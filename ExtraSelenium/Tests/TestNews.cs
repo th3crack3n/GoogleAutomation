@@ -9,7 +9,6 @@ namespace GoogleAutomation
     class TestNews
     {
         BrowserSession browser;
-        Google google;
         Header header;
         Footer footer;
         News news;
