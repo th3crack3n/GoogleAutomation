@@ -15,15 +15,14 @@ namespace GoogleAutomation.Object_Models
             TopStories,     // moved to second position, button not available when selected on page load
             World,
             US,
-            Elections,      // probably temporary
             Business,
             Technology,
             Entertainment,
             Sports,
-            OlympicGames,   // temporary
             Science,
             Health,
-            Spotlight
+            Spotlight,
+            Elections     // probably temporary
         }
 
         public enum Fields
@@ -53,8 +52,6 @@ namespace GoogleAutomation.Object_Models
                     return "//a[contains(text(),'World')]";
                 case Categories.US:
                     return "//a[contains(text(),'U.S.')]";
-                case Categories.Elections:
-                    return "//a[contains(text(),'Elections')]";
                 case Categories.Business:
                     return "//a[contains(text(),'Business')]";
                 case Categories.Technology:
@@ -63,17 +60,22 @@ namespace GoogleAutomation.Object_Models
                     return "//a[contains(text(),'Entertainment')]";
                 case Categories.Sports:
                     return "//a[contains(text(),'Sports')]";
-                case Categories.OlympicGames:
-                    return "//a[contains(text(),'Olympic Games')]";
                 case Categories.Science:
                     return "//a[contains(text(),'Science')]";
                 case Categories.Health:
                     return "//a[contains(text(),'Health')]";
                 case Categories.Spotlight:
                     return "//a[contains(text(),'Spotlight')]";
+                case Categories.Elections:
+                    return "//a[contains(text(),'Elections')]";
                 default:
                     return null;
             }
+        }
+
+        public bool hasLeftHome()
+        {
+            return !string.Equals(browser.Location, "https://www.google.com/");
         }
 
         public void clickFirstArticle()

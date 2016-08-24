@@ -43,6 +43,8 @@ namespace GoogleAutomation
             {
                 news.click(option);
                 news.clickFirstArticle();
+
+                Assert.True(news.hasLeftHome());
             }
         }
 
