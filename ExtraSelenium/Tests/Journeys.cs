@@ -7,11 +7,12 @@ namespace GoogleAutomation
     [TestFixture]
     class Journeys
     {
-        BrowserSession browser;
+        BrowserSession browser; 
+        Footer footer;
         Google google;
         Header header;
-        Footer footer;
         Images images;
+        Maps maps;
         SignIn signIn;
 
         [TestFixtureSetUp]
@@ -24,10 +25,11 @@ namespace GoogleAutomation
             });
             browser.MaximiseWindow();
 
+            footer = new Footer(browser);
             google = new Google(browser);
             header = new Header(browser);
-            footer = new Footer(browser);
             images = new Images(browser);
+            maps = new Maps(browser);
             signIn = new SignIn(browser);
         }
 
