@@ -22,11 +22,13 @@ namespace GoogleAutomation.Object_Models
         public void click(Clickables link)
         {
             var xpath = "";
+            bool standardLogo = true;
 
             switch (link)
             {
                 case Clickables.Doodle:
                     xpath = "//div[@id='hplogo']/a/img";
+                    if (browser.FindXPath(xpath).Exists()) standardLogo = false;
                     break;
                 case Clickables.GoogleSearch:
                     xpath = "//input[@value='Google Search']";
@@ -38,12 +40,15 @@ namespace GoogleAutomation.Object_Models
                     throw new Exception();
             }
 
-            browser.FindXPath(xpath, Options.First).Click();
+            if (!standardLogo)
+            {
+                browser.FindXPath(xpath, Options.First).Click();
+            }
         }
 
         public bool hasLeftHome()
         {
-            return !string.Equals(browser.Location, "https://www.google.com/");
+            return !(browser.Location.ToString().Equals("https://www.google.com/"));
         }
 
         public void enterSearch(string text)

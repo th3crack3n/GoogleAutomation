@@ -56,7 +56,7 @@ namespace GoogleAutomation
             Assert.IsTrue(header.optionsOpen());
         }
 
-        [Test]
+        [Test Ignore]
         public void openSubOptionAll()
         {
             foreach (var option in header.subOptions){
@@ -77,7 +77,7 @@ namespace GoogleAutomation
         public void openDoodle()
         {
             google.click(Google.Clickables.Doodle);
-            Assert.IsTrue(google.hasLeftHome());
+            Assert.True(google.hasLeftHome());
         }
 
         [Test]
