@@ -7,8 +7,6 @@ namespace GoogleAutomation
     [TestFixture]
     class TestHomePage
     {
-        public static void Main(string[] args) { }
-
         BrowserSession browser;
         Google google;
         Header header;
