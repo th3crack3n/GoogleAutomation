@@ -83,6 +83,18 @@ namespace GoogleAutomation.Object_Models
             }
         }
 
+        public SubOption findSubOption(string option)
+        {
+            foreach (var opt in subOptions)
+            {
+                if (option.Equals(opt.getName()))
+                {
+                    return opt;
+                }
+            }
+            return null;
+        }
+
         public void click(Clickables link)
         {
             var xpath = "";
