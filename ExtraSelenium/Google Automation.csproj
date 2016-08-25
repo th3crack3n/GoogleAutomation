@@ -7,8 +7,8 @@
     <ProjectGuid>{72EB7A1C-89A0-456D-B0B5-405C02CFC4CE}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExtraSelenium</RootNamespace>
-    <AssemblyName>ExtraSelenium</AssemblyName>
+    <RootNamespace>GoogleAutomation</RootNamespace>
+    <AssemblyName>GoogleAutomation</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
