@@ -32,25 +32,27 @@ namespace GoogleAutomation
         public void reset()
         {
             browser.Visit("/");
-            //header.clickSubOption(header.subOptions[5]);
         }
 
         [Test]
         public void testAllCategories()
         {
-            foreach (News.Categories option in Enum.GetValues(typeof(News.Categories)))
+            foreach (var option in news.Categories)
             {
-                news.click(option);
-                news.clickFirstArticle();
+                option.Click();
 
                 Assert.True(news.hasLeftHome());
+
+                news.clickFirstArticle();
             }
         }
 
         [Test]
         public void testSearch()
         {
-            news.enterText(News.Fields.SearchBar, "ford fusion");
+            news.SearchBar.FillText("ford fusion");
+
+            Assert.True(news.hasLeftHome());
         }
 
 

@@ -9,7 +9,7 @@ namespace GoogleAutomation
     {
         BrowserSession browser; 
         Footer footer;
-        Google google;
+        Main main;
         Header header;
         Images images;
         Maps maps;
@@ -26,7 +26,7 @@ namespace GoogleAutomation
             browser.MaximiseWindow();
 
             footer = new Footer(browser);
-            google = new Google(browser);
+            main = new Main(browser);
             header = new Header(browser);
             images = new Images(browser);
             maps = new Maps(browser);
@@ -49,10 +49,10 @@ namespace GoogleAutomation
         [Test]
         public void journey1()
         {
-            header.click(Header.Clickables.SignIn);
+            header.SignIn.Click();
             signIn.login("fake@google.com", "failpass");   // email must exist
             browser.Visit("/");
-            header.click(Header.Clickables.Images);
+            header.Images.Click();
             images.uploadImage("C:\\Users\\Public\\Penguins.jpg");
         }
 
@@ -65,10 +65,10 @@ namespace GoogleAutomation
         [Test]
         public void journey2()
         {
-            header.click(Header.Clickables.SignIn);
+            header.SignIn.Click();
             signIn.login("fake@google.com", "failpass");   // email must exist
             browser.Visit("/");
-            footer.click(Footer.Clickables.Terms);
+            footer.Terms.Click();
         }
 
         /// <summary>
@@ -80,10 +80,10 @@ namespace GoogleAutomation
         [Test]
         public void journey3()
         {
-            header.click(Header.Clickables.SignIn);
+            header.SignIn.Click();
             signIn.login("fake@google.com", "failpass");   // email must exist
-            signIn.click(SignIn.Clickables.DifferentAccount);
-            signIn.click(SignIn.Clickables.CreateAccount);
+            signIn.DifferentAccount.Click();
+            signIn.CreateAccount.Click();
         }
 
         /// <summary>
@@ -93,11 +93,11 @@ namespace GoogleAutomation
         [Test]
         public void journey4()
         {
-            header.click(Header.Clickables.SignIn);
-            signIn.selectOption(SignIn.Selectables.Language, "Italiano");
-            signIn.selectOption(SignIn.Selectables.Language, "Nederlands");
-            signIn.selectOption(SignIn.Selectables.Language, "Filipino");
-            signIn.selectOption(SignIn.Selectables.Language, "English (United States)");
+            header.SignIn.Click();
+            signIn.Language.Select("Italiano");
+            signIn.Language.Select("Nederlands");
+            signIn.Language.Select("Filipino");
+            signIn.Language.Select("English (United States)");
         }
 
         /// <summary>
@@ -109,11 +109,11 @@ namespace GoogleAutomation
         [Test]
         public void journey5()
         {
-            header.click(Header.Clickables.SignIn);
-            signIn.click(SignIn.Clickables.CreateAccount);
+            header.SignIn.Click();
+            signIn.CreateAccount.Click();
             signIn.fillCreateAccount("Sean", "McCracken", "newfakegmail", "fakepass123", "fakepass123", 
-                SignIn.Clickables.August, "22", "1990", SignIn.Clickables.Male, "5153825330", "oldfakegmail@gmail.com");
-            signIn.click(SignIn.Clickables.NextNewAccount);
+                signIn.August, "22", "1990", signIn.Male, "5153825330", "oldfakegmail@gmail.com");
+            signIn.NextNewAccount.Click();
         }
 
         [TestFixtureTearDown]

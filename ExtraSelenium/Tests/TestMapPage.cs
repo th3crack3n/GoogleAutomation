@@ -1,13 +1,7 @@
 ﻿using Coypu;
 using GoogleAutomation.Object_Models;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace GoogleAutomation
 {
@@ -40,57 +34,57 @@ namespace GoogleAutomation
         [Test]
         public void zoomInAndOut()
         {
-            maps.click(Maps.References.ZoomIn);
-            maps.click(Maps.References.ZoomOut);
+            maps.ZoomIn.Click();
+            maps.ZoomOut.Click();
         }
 
         [Test]
         public void testLocation()
         {
-            maps.click(Maps.References.ShowLocation);
+            maps.ShowLocation.Click();
         }
 
         [Test]
         public void toggleMapType()
         {
-            maps.click(Maps.References.MapType);
-            maps.click(Maps.References.MapType);
+            maps.MapType.Click();
+            maps.MapType.Click();
         }
 
         [Test]
         public void toggleMenu()
         {
-            maps.click(Maps.References.OpenMenu);
-            maps.click(Maps.References.CloseMenu);
+            maps.OpenMenu.Click();
+            maps.CloseMenu.Click();
         }
 
         [Test]
         public void toggleExplore()
         {
-            maps.click(Maps.References.Explore);
-            maps.click(Maps.References.Explore);
+            maps.Explore.Click();
+            maps.Explore.Click();
         }
 
         [Test]
         public void toggleDirections()
         {
-            maps.click(Maps.References.Directions);
-            maps.click(Maps.References.CancelDirections, Options.First);
+            maps.Directions.Click();
+            maps.CancelDirections.Click();
         }
 
         [Test]
         public void searchText()
         {
-            maps.enterSearchText(maps.returnReferenceValue(Maps.References.XpanxionAddress));
-            maps.click(Maps.References.SearchIcon);
+            maps.SearchBox.FillText("Xpanxion, Ames IA");
+            maps.SearchIcon.Click();
         }
 
         [Test]
         public void getDirections()
         {
-            maps.click(Maps.References.Directions);
+            maps.Directions.Click();
             maps.enterDirections();
-            maps.click(Maps.References.DirectionSubmit);
+            maps.DirectionSubmit.Click();
         }
 
         [TearDown]

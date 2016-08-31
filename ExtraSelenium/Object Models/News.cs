@@ -8,26 +8,75 @@ namespace GoogleAutomation.Object_Models
     class News
     {
         private BrowserSession browser;
-
-        public enum Categories
+        
+        public Objects TopStories
         {
-            Local,
-            TopStories,     // moved to second position, button not available when selected on page load
-            World,
-            US,
-            Business,
-            Technology,
-            Entertainment,
-            Sports,
-            Science,
-            Health,
-            Spotlight,
-            Elections     // probably temporary
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Top Stories')]"); }
         }
 
-        public enum Fields
+        public Objects Local
         {
-            SearchBar
+            get { return new Objects(browser, Objects.RefType.Xpath, "//div[3]/div/div/div/div[2]/div/ul/li[2]/a"); }
+        }
+
+        public Objects World
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'World')]"); }
+        }
+
+        public Objects US
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'U.S.')]"); }
+        }
+
+        public Objects Business
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Business')]"); }
+        }
+
+        public Objects Technology
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Technology')]"); }
+        }
+
+        public Objects Entertainment
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Entertainment')]"); }
+        }
+
+        public Objects Sports
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Sports')]"); }
+        }
+
+        public Objects Science
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Science')]"); }
+        }
+
+        public Objects Health
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Health')]"); }
+        }
+
+        public Objects Spotlight
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Spotlight')]"); }
+        }
+
+        public Objects Elections
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Elections')]"); }
+        }
+
+        public Objects SearchBar
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "gbqfq"); }
+        }
+
+        public Objects FirstArticle
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//h2/a/span"); }
         }
 
         public News(BrowserSession browser)
@@ -35,41 +84,11 @@ namespace GoogleAutomation.Object_Models
             this.browser = browser;
         }
 
-        public void click(Categories clickObj)
+        public Objects[] Categories
         {
-            browser.FindXPath(getClickRef(clickObj), Options.First).Click();
-        }
-
-        private string getClickRef(Categories clickObj)
-        {
-            switch (clickObj)
+            get
             {
-                case Categories.TopStories:
-                    return "//a[contains(text(),'Top Stories')]";
-                case Categories.Local:
-                    return "//div[3]/div/div/div/div[2]/div/ul/li[2]/a";
-                case Categories.World:
-                    return "//a[contains(text(),'World')]";
-                case Categories.US:
-                    return "//a[contains(text(),'U.S.')]";
-                case Categories.Business:
-                    return "//a[contains(text(),'Business')]";
-                case Categories.Technology:
-                    return "//a[contains(text(),'Technology')]";
-                case Categories.Entertainment:
-                    return "//a[contains(text(),'Entertainment')]";
-                case Categories.Sports:
-                    return "//a[contains(text(),'Sports')]";
-                case Categories.Science:
-                    return "//a[contains(text(),'Science')]";
-                case Categories.Health:
-                    return "//a[contains(text(),'Health')]";
-                case Categories.Spotlight:
-                    return "//a[contains(text(),'Spotlight')]";
-                case Categories.Elections:
-                    return "//a[contains(text(),'Elections')]";
-                default:
-                    return null;
+                return new Objects[] { Local, TopStories, World, US, Business, Technology, Entertainment, Sports, Science, Health, Spotlight, Elections };
             }
         }
 
@@ -80,7 +99,7 @@ namespace GoogleAutomation.Object_Models
 
         public void clickFirstArticle()
         {
-            browser.FindXPath("//h2/a/span", Options.First).Click();
+            FirstArticle.Click();
             Thread.Sleep(500);
             closeOpenedTab();
         }
@@ -92,23 +111,6 @@ namespace GoogleAutomation.Object_Models
             driver.SwitchTo().Window(tabs[1]);      // newly opened tab
             driver.Close();
             driver.SwitchTo().Window(tabs[0]);      // original tab
-        }
-
-        public void enterText(Fields fieldObj, string text)
-        {
-            browser.FillIn(getFieldRef(fieldObj)).With(text);
-            browser.ClickButton("gbqfb");
-        }
-
-        private string getFieldRef(Fields fieldObj)
-        {
-            switch (fieldObj)
-            {
-                case Fields.SearchBar:
-                    return "gbqfq";
-                default:
-                    return null;
-            }
         }
     }
 }

@@ -81,12 +81,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Object Models\Footer.cs" />
-    <Compile Include="Object Models\Google.cs" />
+    <Compile Include="Object Models\Main.cs" />
     <Compile Include="Object Models\Header.cs" />
     <Compile Include="Object Models\Images.cs" />
     <Compile Include="Object Models\Maps.cs" />
     <Compile Include="Object Models\News.cs" />
     <Compile Include="Object Models\SignIn.cs" />
+    <Compile Include="Objects.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tests\Journeys.cs" />
     <Compile Include="Tests\TestHomePage.cs" />

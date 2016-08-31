@@ -8,7 +8,7 @@ namespace GoogleAutomation
     class TestHomePage
     {
         BrowserSession browser;
-        Google google;
+        Main main;
         Header header;
         Footer footer;
 
@@ -22,7 +22,7 @@ namespace GoogleAutomation
             });
             browser.MaximiseWindow();
 
-            google = new Google(browser);
+            main = new Main(browser);
             header = new Header(browser);
             footer = new Footer(browser);
         }
@@ -36,129 +36,139 @@ namespace GoogleAutomation
         [Test]
         public void openGmail()
         {
-            header.click(Header.Clickables.Gmail);
+            header.Gmail.Click();
+
             Assert.IsTrue(header.hasLeftHome());
         }
 
         [Test]
         public void openImages()
         {
-            header.click(Header.Clickables.Images);
+            header.Images.Click();
+
             Assert.IsTrue(header.hasLeftHome());
         }
 
         [Test]
         public void openOptions()
         {
-            header.click(Header.Clickables.Options);
-            Assert.IsTrue(header.optionsOpen());
+            header.Options.Click();
+
+            Assert.IsTrue(header.OptionsOpen.Exists());
         }
 
-        [Test Ignore]
+        [Test]
         public void openSubOptionAll()
         {
-            foreach (var option in header.subOptions){
+            foreach (var option in header.SubOptions){
                 reset();
-                header.clickSubOption(option);
-                Assert.IsTrue(option.verifyURL(browser));
+                header.Options.Click();
+                option.Click();
+
+                Assert.IsTrue(option.ContainsPartial());
             }
         }
 
         [Test]
         public void openSignIn()
         {
-            header.click(Header.Clickables.SignIn);
-            Assert.IsTrue(header.getURL().ToString().Contains("accounts.google.com"));
-        }
+            header.SignIn.Click();
 
-        [Test]
-        public void openDoodle()
-        {
-            google.click(Google.Clickables.Doodle);
-            Assert.True(google.hasLeftHome());
+            Assert.IsTrue(header.SignIn.ContainsPartial());
         }
-
+        
         [Test]
         public void searchInstantResults()
         {
             footer.disableInstantSearch(false);
-            google.enterSearch("xpanxion");
+            main.SearchBar.FillText("xpanxion");
+
+            Assert.True(true);
         }
 
         [Test]
         public void searchNormal()
         {
             footer.disableInstantSearch(true);
-            google.enterSearch("xpanxion");
-            google.click(Google.Clickables.GoogleSearch);
-            Assert.IsTrue(google.hasLeftHome());
+            main.SearchBar.FillText("xpanxion");
+            main.GoogleSearch.Click();
+
+            Assert.IsTrue(main.hasLeftHome());
         }
 
         [Test]
         public void searchLucky()
         {
             footer.disableInstantSearch(true);
-            google.enterSearch("xpanxion");
-            google.click(Google.Clickables.ImFeelingLucky);
-            Assert.IsTrue(google.hasLeftHome());
+            main.SearchBar.FillText("xpanxion");
+            main.ImFeelingLucky.Click();
+
+            Assert.IsTrue(main.hasLeftHome());
         }
 
         [Test]
         public void openAdvertising()
         {
-            footer.click(Footer.Clickables.Advertising);
-            Assert.IsTrue(footer.getURL().ToString().Contains("google.com/intl/en/ads"));
+            footer.Advertising.Click();
+
+            Assert.IsTrue(footer.Advertising.ContainsPartial());
         }
 
         [Test]
         public void openBusiness()
         {
-            footer.click(Footer.Clickables.Business);
-            Assert.IsTrue(footer.getURL().ToString().Contains("google.com/services"));
+            footer.Business.Click();
+
+            Assert.IsTrue(footer.Business.ContainsPartial());
         }
 
         [Test]
         public void openAbout()
         {
-            footer.click(Footer.Clickables.About);
-            Assert.IsTrue(footer.getURL().ToString().Contains("google.com/intl/en/about"));
+            footer.About.Click();
+
+            Assert.IsTrue(footer.About.ContainsPartial());
         }
 
         [Test]
         public void openPrivacy()
         {
-            footer.click(Footer.Clickables.Privacy);
-            Assert.IsTrue(footer.getURL().ToString().Contains("google.com/intl/en/policies/privacy"));
+            footer.Privacy.Click();
+
+            Assert.IsTrue(footer.Privacy.ContainsPartial());
         }
 
         [Test]
         public void openTerms()
         {
-            footer.click(Footer.Clickables.Terms);
-            Assert.IsTrue(footer.getURL().ToString().Contains("google.com/intl/en/policies/terms"));
+            footer.Terms.Click();
+
+            Assert.IsTrue(footer.Terms.ContainsPartial());
         }
 
         [Test]
         public void openSettings()
         {
-            footer.click(Footer.Clickables.Settings);
-            Assert.IsTrue(footer.settingsOpen());
+            footer.Settings.Click();
+
+            Assert.IsTrue(footer.SettingsOpen.Exists());
         }
 
         [Test]
         public void openSubSettingsAll()
         {
-            foreach (var option in footer.subSettings)
+            foreach (var option in footer.SubSettings)
             {
                 reset();
-                footer.clickSubSetting(option);
-                if (option.getName().Equals("SendFeedback"))
+                footer.Settings.Click();
+                option.Click();
+                if (option == footer.SendFeedback)
                 {
-                    Assert.IsTrue(footer.feedbackOpen());
+                    Assert.IsTrue(footer.FeedbackOpen.Exists());
                 }
                 else
                 {
-                    Assert.IsTrue(footer.getURL().ToString().Contains(option.getLandingURLPartial()));
+                    Assert.IsTrue(option.ContainsPartial());
                 }
             }
         }

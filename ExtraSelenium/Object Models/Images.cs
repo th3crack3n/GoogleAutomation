@@ -6,84 +6,113 @@ namespace GoogleAutomation.Object_Models
     {
         private BrowserSession browser;
 
+        public Objects SearchByImage
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "qbi"); }
+        }
+
+        public Objects SearchByImageOpen
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "qbp"); }
+        }
+
+        public Objects UploadAnImage
+        {
+            get { return new Objects(browser, Objects.RefType.Link, "Upload an image"); }
+        }
+
+        public Objects UploadAnImageOpen
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "qbp"); }
+        }
+
+        public Objects PasteImageUrl
+        {
+            get { return new Objects(browser, Objects.RefType.Link, "Paste image URL"); }
+        }
+
+        public Objects PasteImageUrlOpen
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//td[@id='qbbtc']/input"); }
+        }
+
+        public Objects SearchBar
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "lst-ib"); }
+        }
+
+        public Objects SearchIcon
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='sblsbb']/button"); }
+        }
+
+        public Objects TypeImageUrl
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "qbui"); }
+        }
+
+        public Objects SearchByImagePost
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//input[@id='qbui']"); }
+        }
+
+        public Objects ImageUrl
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "qbfile"); }
+        }
+
         public Images(BrowserSession browser)
         {
             this.browser = browser;
         }
-
 
         public bool hasLeftImagesHome()
         {
             return !string.Equals(browser.Location, "https://www.google.com/images");
         }
 
-        public string getURL()
+        public void togglePasteImageURL()
         {
-            return browser.Location.ToString();
-        }
-
-        public bool searchByImageOpen()
-        {
-            return browser.FindId("qbp").Exists();
-        }
-
-        public bool uploadImageOpen()
-        {
-            return browser.FindId("qbp").Exists();
-        }
-
-        public bool pasteImageURLOpen()
-        {
-            return browser.FindXPath("//td[@id='qbbtc']/input").Exists();
-        }
-
-        public void typeAndReturnSearchBar(string text)
-        {
-            browser.FillIn("lst-ib").With("xpanxion");
-            browser.ClickButton("btnG");
-        }
-
-        public void clickSearchByImage()
-        {
-            browser.FindId("qbi").Click();
+            if (UploadAnImageOpen.Exists())
+            {
+                PasteImageUrl.Click();
+            }
         }
 
         public void toggleUploadImage()
         {
-            if (browser.FindId("qbug").Exists())
+            if (PasteImageUrlOpen.Exists())
             {
-                browser.ClickLink("Upload an image");
+                UploadAnImage.Click();
             }
         }
 
-        public void togglePasteImageURL()
+        public void typeAndReturnSearchBar(string text)
         {
-            if (browser.FindId("qbig").Exists())
-            {
-                browser.ClickLink("Paste image URL");
-            }
+            SearchBar.FillText("xpanxion");
+            SearchIcon.Click();
         }
 
         public void typeInImageURL(string url)
         {
-            browser.FillIn("qbui").With(url);
+            TypeImageUrl.FillText(url);
         }
 
         public void clickSearchByImagePost()
         {
-            browser.FindXPath("//input[@id='qbui']").Click();
+            SearchByImagePost.Click();
         }
 
         public void uploadImageLocation(string path)
         {
-            browser.FillIn("encoded_image").With(path);
+            ImageUrl.FillText(path);
         }
 
         public void uploadImage(string path)
         {
-            clickSearchByImage();
+            SearchByImage.Click();
             toggleUploadImage();
-            uploadImageLocation(path);
+            ImageUrl.FillText(path);
         }
 
     }

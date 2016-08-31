@@ -31,44 +31,42 @@ namespace GoogleAutomation
         public void reset()
         {
             browser.Visit("/");
-            header.click(Header.Clickables.SignIn);
+            header.SignIn.Click();
         }
 
         [Test]
         public void testEnterEmail()
         {
-            signIn.enterText(SignIn.Fields.SignInEmail, "fake@gmail.com");
+            signIn.Email.FillText("fake@gmail.com");
         }
 
         [Test]
         public void testClickNext()
         {
-            signIn.click(SignIn.Clickables.Next);
+            signIn.Next.Click();
         }
 
         [Test]
         public void testEnterPassword()
         {
-            signIn.enterText(SignIn.Fields.SignInEmail, "fake@gmail.com");
-            signIn.click(SignIn.Clickables.Next);
-
-            signIn.enterText(SignIn.Fields.SignInPassword, "fakepass123");
+            signIn.Email.FillText("fake@gmail.com");
+            signIn.Next.Click();
+            signIn.Password.FillText("fakepass123");
         }
 
         [Test]
         public void testClickSignIn()
         {
-            signIn.enterText(SignIn.Fields.SignInEmail, "fake@gmail.com");
-            signIn.click(SignIn.Clickables.Next);
-
-            signIn.enterText(SignIn.Fields.SignInPassword, "fakepass123");
-            signIn.click(SignIn.Clickables.SignIn);
+            signIn.Email.FillText("fake@gmail.com");
+            signIn.Next.Click();
+            signIn.Password.FillText("fakepass123");
+            signIn.SignInButton.Click();
         }
 
         [Test]
         public void testCreateAccount()
         {
-            signIn.click(SignIn.Clickables.CreateAccount);
+            signIn.CreateAccount.Click();
         }
 
         [TestFixtureTearDown]

@@ -46,8 +46,9 @@ namespace GoogleAutomation
         [Test]
         public void openSearchByImage()
         {
-            images.clickSearchByImage();
-            Assert.IsTrue(images.searchByImageOpen());
+            images.SearchByImage.Click();
+
+            Assert.IsTrue(images.SearchByImageOpen.Exists());
         }
 
         [Test]
@@ -55,9 +56,12 @@ namespace GoogleAutomation
         {
             openSearchByImage();
             images.toggleUploadImage();
-            Assert.IsTrue(images.uploadImageOpen());
+
+            Assert.IsTrue(images.UploadAnImageOpen.Exists());
+
             images.togglePasteImageURL();
-            Assert.IsTrue(images.pasteImageURLOpen());
+
+            Assert.IsTrue(images.PasteImageUrlOpen.Exists());
 
         }
 
@@ -67,6 +71,7 @@ namespace GoogleAutomation
             openSearchByImage();
             images.typeInImageURL("http://xpanxion.com/images/black%20xpanxion-ust%20global%20group.png");
             images.clickSearchByImagePost();
+
             Assert.IsTrue(images.hasLeftImagesHome());
         }
 
@@ -80,6 +85,7 @@ namespace GoogleAutomation
             {
                 Assert.Fail("Unable to find file");
             }
+
             Assert.IsTrue(images.hasLeftImagesHome());
         }
 

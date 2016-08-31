@@ -5,53 +5,177 @@ namespace GoogleAutomation.Object_Models
     class SignIn
     {
         private BrowserSession browser;
-
-        public enum Clickables
+        
+        public Objects Next
         {
-            Next,
-            SignIn,
-            CreateAccount,
-            BirthMonthOpen,
-            January,
-            February,
-            March,
-            April,
-            May,
-            June,
-            July,
-            August,
-            September,
-            October,
-            November,
-            December,
-            GenderOpen,
-            Female,
-            Male,
-            Other,
-            NextNewAccount,
-            DifferentAccount
+            get { return new Objects(browser, Objects.RefType.Id, "next"); }
         }
 
-        public enum Fields
+        public Objects SignInButton
         {
-            SignInEmail,
-            SignInPassword,
-            FirstName,
-            LastName,
-            NewAddress,
-            Password,
-            PasswordVerify,
-            BirthDay,
-            BirthYear,
-            RecoveryPhone,
-            RecoveryEmail
+            get { return new Objects(browser, Objects.RefType.Id, "signIn"); }
         }
 
-        public enum Selectables
+        public Objects CreateAccount
         {
-            Language
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Create account')]"); }
         }
 
+        public Objects BirthMonthOpen
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//span[@id='BirthMonth']/div"); }
+        }
+
+        public Objects January
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":1"); }
+        }
+
+        public Objects February
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":2"); }
+        }
+
+        public Objects March
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":3"); }
+        }
+
+        public Objects April
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":4"); }
+        }
+
+        public Objects May
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":5"); }
+        }
+
+        public Objects June
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":6"); }
+        }
+
+        public Objects July
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":7"); }
+        }
+
+        public Objects August
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":8"); }
+        }
+
+        public Objects September
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":9"); }
+        }
+
+        public Objects October
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":10"); }
+        }
+
+        public Objects November
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":11"); }
+        }
+
+        public Objects December
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":12"); }
+        }
+
+        public Objects GenderOpen
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='Gender']/div"); }
+        }
+
+        public Objects Female
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":e"); }
+        }
+
+        public Objects Male
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":f"); }
+        }
+
+        public Objects Other
+        {
+            get { return new Objects(browser, Objects.RefType.Id, ":g"); }
+        }
+
+        public Objects NextNewAccount
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "submitbutton"); }
+        }
+
+        public Objects DifferentAccount
+        {
+            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Sign in with a different account')]"); }
+        }
+
+        public Objects Email
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "Email"); }
+        }
+
+        public Objects Password
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "Passwd"); }
+        }
+
+        public Objects FirstName
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "FirstName"); }
+        }
+
+        public Objects LastName
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "LastName"); }
+        }
+
+        public Objects NewAddress
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "GmailAddress"); }
+        }
+
+        public Objects NewPassword
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "Passwd"); }
+        }
+
+        public Objects NewPasswordVerify
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "PasswdAgain"); }
+        }
+
+        public Objects BirthDay
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "BirthDay"); }
+        }
+
+        public Objects BirthYear
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "BirthYear"); }
+        }
+
+        public Objects RecoveryPhone
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "RecoveryPhoneNumber"); }
+        }
+
+        public Objects RecoveryEmail
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "RecoveryEmailAddress"); }
+        }
+
+        public Objects Language
+        {
+            get { return new Objects(browser, Objects.RefType.Id, "lang-chooser"); }
+        }
+        
         public SignIn(BrowserSession browser)
         {
             this.browser = browser;
@@ -59,162 +183,32 @@ namespace GoogleAutomation.Object_Models
 
         public void login(string email, string password)
         {
-            enterText(Fields.SignInEmail, email);
-            click(Clickables.Next);
-            enterText(Fields.SignInPassword, password);
-            click(Clickables.SignIn);
+            Email.FillText(email);
+            Next.Click();
+            Password.FillText(password);
+            SignInButton.Click();
         }
 
-        public void fillCreateAccount(string first, string last, string newAddr, string pass, string passAgain, Clickables month, 
-            string day, string year, Clickables gender, string phone, string currAddr)
+        public void fillCreateAccount(string first, string last, string newAddr, string pass, string passAgain, Objects month, 
+            string day, string year, Objects gender, string phone, string currAddr)
         {
-            enterText(Fields.FirstName, first);
-            enterText(Fields.LastName, last);
-            enterText(Fields.NewAddress, newAddr);
-            enterText(Fields.Password, pass);
-            enterText(Fields.PasswordVerify, passAgain);
+            FirstName.FillText(first);
+            LastName.FillText(last);
+            NewAddress.FillText(newAddr);
+            NewPassword.FillText(pass);
+            NewPasswordVerify.FillText(passAgain);
 
-            click(Clickables.BirthMonthOpen);
-            click(month);
+            BirthMonthOpen.Click();
+            month.Click();
 
-            enterText(Fields.BirthDay, day);
-            enterText(Fields.BirthYear, year);
+            BirthDay.element.SendKeys(day);
+            BirthYear.element.SendKeys(year);
 
-            click(Clickables.GenderOpen);
-            click(gender);
+            GenderOpen.Click();
+            gender.Click();
 
-            enterText(Fields.RecoveryPhone, phone);
-            enterText(Fields.RecoveryEmail, currAddr);
-        }
-
-        public void click(Clickables clickObj)
-        {
-            var reference = getClickRef(clickObj);
-
-            if (clickObj == Clickables.CreateAccount || clickObj == Clickables.DifferentAccount || 
-                clickObj == Clickables.BirthMonthOpen || clickObj == Clickables.GenderOpen)
-            {
-                browser.FindXPath(reference).Click();
-            } else
-            {
-                browser.FindId(reference).Click();
-            }
-        }
-        
-        private string getClickRef(Clickables clickObj)
-        {
-            switch (clickObj)
-            {
-                case Clickables.Next:
-                    return "next";
-                case Clickables.SignIn:
-                    return "signIn";
-                case Clickables.CreateAccount:
-                    return "//a[contains(text(),'Create account')]";
-                case Clickables.BirthMonthOpen:
-                    return "//span[@id='BirthMonth']/div";
-                case Clickables.January:
-                    return ":1";
-                case Clickables.February:
-                    return ":2";
-                case Clickables.March:
-                    return ":3";
-                case Clickables.April:
-                    return ":4";
-                case Clickables.May:
-                    return ":5";
-                case Clickables.June:
-                    return ":6";
-                case Clickables.July:
-                    return ":7";
-                case Clickables.August:
-                    return ":8";
-                case Clickables.September:
-                    return ":9";
-                case Clickables.October:
-                    return ":10";
-                case Clickables.November:
-                    return ":11";
-                case Clickables.December:
-                    return ":12";
-                case Clickables.GenderOpen:
-                    return "//div[@id='Gender']/div";
-                case Clickables.Female:
-                    return ":e";
-                case Clickables.Male:
-                    return ":f";
-                case Clickables.Other:
-                    return ":g";
-                case Clickables.NextNewAccount:
-                    return "submitbutton";
-                case Clickables.DifferentAccount:
-                    return "//a[contains(text(),'Sign in with a different account')]";
-                default:
-                    return null;
-            }
-        }
-
-        public void enterText(Fields fieldObj, string text)
-        {
-            var reference = getFieldRef(fieldObj);
-
-            if (fieldObj == Fields.BirthDay || fieldObj == Fields.BirthYear)
-            {
-                browser.FindId(reference).SendKeys(text);
-            }
-            else
-            {
-                browser.FillIn(reference).With(text);
-            }
-        }
-        
-        private string getFieldRef(Fields fieldObj)
-        {
-            switch (fieldObj)
-            {
-                case Fields.SignInEmail:
-                    return "Email";
-                case Fields.SignInPassword:
-                    return "Passwd";
-                case Fields.FirstName:
-                    return "FirstName";
-                case Fields.LastName:
-                    return "LastName";
-                case Fields.NewAddress:
-                    return "GmailAddress";
-                case Fields.Password:
-                    return "Passwd";
-                case Fields.PasswordVerify:
-                    return "PasswdAgain";
-                case Fields.BirthDay:
-                    return "BirthDay";
-                case Fields.BirthYear:
-                    return "BirthYear";
-                case Fields.RecoveryPhone:
-                    return "RecoveryPhoneNumber";
-                case Fields.RecoveryEmail:
-                    return "RecoveryEmailAddress";
-                default:
-                    return null;
-            }
-        }
-
-        public void selectOption(Selectables selection, string opt)
-        {
-            var reference = getSelectablesRef(selection);
-
-            browser.Select(opt).From(reference);
-        }
-
-        private string getSelectablesRef(Selectables selection)
-        {
-            switch (selection)
-            {
-                case Selectables.Language:
-                    return "lang-chooser";
-                default:
-                    return null;
-            }
-        } 
+            RecoveryPhone.FillText(phone);
+            RecoveryEmail.FillText(currAddr);
+        }   
     }
 }
