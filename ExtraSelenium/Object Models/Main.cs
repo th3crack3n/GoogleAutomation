@@ -1,35 +1,34 @@
 ﻿using Coypu;
-using System;
 
 namespace GoogleAutomation.Object_Models
 {
     class Main
     {
-        private BrowserSession browser;
+        private BrowserSession _browser;
         
-        public Objects GoogleSearch
+        public ObjectModel GoogleSearch
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//input[@value='Google Search']"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//input[@value='Google Search']"); }
         }
 
-        public Objects ImFeelingLucky
+        public ObjectModel ImFeelingLucky
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='sbtc']/div[2]/div[2]/div/div/div/div/span[2]/span/input"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='sbtc']/div[2]/div[2]/div/div/div/div/span[2]/span/input"); }
         }
 
-        public Objects SearchBar
+        public ObjectModel SearchBar
         {
-            get { return new Objects(browser, Objects.RefType.Field, "q"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Field, "q"); }
         }
 
         public Main(BrowserSession browser)
         {
-            this.browser = browser;
+            _browser = browser;
         }
 
         public bool hasLeftHome()
         {
-            return !(browser.Location.ToString().Equals("https://www.google.com/"));
+            return !(_browser.Location.ToString().Equals("https://www.google.com/"));
         }
     }
 }

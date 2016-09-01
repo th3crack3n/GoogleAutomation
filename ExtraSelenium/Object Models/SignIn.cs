@@ -4,211 +4,181 @@ namespace GoogleAutomation.Object_Models
 {
     class SignIn
     {
-        private BrowserSession browser;
+        private BrowserSession _browser;
         
-        public Objects Next
+        public ObjectModel Next
         {
-            get { return new Objects(browser, Objects.RefType.Id, "next"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "next"); }
         }
 
-        public Objects SignInButton
+        public ObjectModel SignInButton
         {
-            get { return new Objects(browser, Objects.RefType.Id, "signIn"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "signIn"); }
         }
 
-        public Objects CreateAccount
+        public ObjectModel CreateAccount
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Create account')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Create account')]"); }
         }
 
-        public Objects BirthMonthOpen
+        public ObjectModel BirthMonthOpen
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//span[@id='BirthMonth']/div"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//span[@id='BirthMonth']/div"); }
         }
 
-        public Objects January
+        public ObjectModel January
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":1"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":1"); }
         }
 
-        public Objects February
+        public ObjectModel February
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":2"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":2"); }
         }
 
-        public Objects March
+        public ObjectModel March
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":3"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":3"); }
         }
 
-        public Objects April
+        public ObjectModel April
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":4"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":4"); }
         }
 
-        public Objects May
+        public ObjectModel May
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":5"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":5"); }
         }
 
-        public Objects June
+        public ObjectModel June
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":6"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":6"); }
         }
 
-        public Objects July
+        public ObjectModel July
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":7"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":7"); }
         }
 
-        public Objects August
+        public ObjectModel August
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":8"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":8"); }
         }
 
-        public Objects September
+        public ObjectModel September
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":9"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":9"); }
         }
 
-        public Objects October
+        public ObjectModel October
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":10"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":10"); }
         }
 
-        public Objects November
+        public ObjectModel November
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":11"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":11"); }
         }
 
-        public Objects December
+        public ObjectModel December
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":12"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":12"); }
         }
 
-        public Objects GenderOpen
+        public ObjectModel GenderOpen
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='Gender']/div"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='Gender']/div"); }
         }
 
-        public Objects Female
+        public ObjectModel Female
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":e"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":e"); }
         }
 
-        public Objects Male
+        public ObjectModel Male
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":f"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":f"); }
         }
 
-        public Objects Other
+        public ObjectModel Other
         {
-            get { return new Objects(browser, Objects.RefType.Id, ":g"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, ":g"); }
         }
 
-        public Objects NextNewAccount
+        public ObjectModel NextNewAccount
         {
-            get { return new Objects(browser, Objects.RefType.Id, "submitbutton"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "submitbutton"); }
         }
 
-        public Objects DifferentAccount
+        public ObjectModel DifferentAccount
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Sign in with a different account')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Sign in with a different account')]"); }
         }
 
-        public Objects Email
+        public ObjectModel Email
         {
-            get { return new Objects(browser, Objects.RefType.Id, "Email"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "Email"); }
         }
 
-        public Objects Password
+        public ObjectModel Password
         {
-            get { return new Objects(browser, Objects.RefType.Id, "Passwd"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "Passwd"); }
         }
 
-        public Objects FirstName
+        public ObjectModel FirstName
         {
-            get { return new Objects(browser, Objects.RefType.Id, "FirstName"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "FirstName"); }
         }
 
-        public Objects LastName
+        public ObjectModel LastName
         {
-            get { return new Objects(browser, Objects.RefType.Id, "LastName"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "LastName"); }
         }
 
-        public Objects NewAddress
+        public ObjectModel NewAddress
         {
-            get { return new Objects(browser, Objects.RefType.Id, "GmailAddress"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "GmailAddress"); }
         }
 
-        public Objects NewPassword
+        public ObjectModel NewPassword
         {
-            get { return new Objects(browser, Objects.RefType.Id, "Passwd"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "Passwd"); }
         }
 
-        public Objects NewPasswordVerify
+        public ObjectModel NewPasswordVerify
         {
-            get { return new Objects(browser, Objects.RefType.Id, "PasswdAgain"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "PasswdAgain"); }
         }
 
-        public Objects BirthDay
+        public ObjectModel BirthDay
         {
-            get { return new Objects(browser, Objects.RefType.Id, "BirthDay"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "BirthDay"); }
         }
 
-        public Objects BirthYear
+        public ObjectModel BirthYear
         {
-            get { return new Objects(browser, Objects.RefType.Id, "BirthYear"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "BirthYear"); }
         }
 
-        public Objects RecoveryPhone
+        public ObjectModel RecoveryPhone
         {
-            get { return new Objects(browser, Objects.RefType.Id, "RecoveryPhoneNumber"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "RecoveryPhoneNumber"); }
         }
 
-        public Objects RecoveryEmail
+        public ObjectModel RecoveryEmail
         {
-            get { return new Objects(browser, Objects.RefType.Id, "RecoveryEmailAddress"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "RecoveryEmailAddress"); }
         }
 
-        public Objects Language
+        public ObjectModel Language
         {
-            get { return new Objects(browser, Objects.RefType.Id, "lang-chooser"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "lang-chooser"); }
         }
         
         public SignIn(BrowserSession browser)
         {
-            this.browser = browser;
+            _browser = browser;
         }
-
-        public void login(string email, string password)
-        {
-            Email.FillText(email);
-            Next.Click();
-            Password.FillText(password);
-            SignInButton.Click();
-        }
-
-        public void fillCreateAccount(string first, string last, string newAddr, string pass, string passAgain, Objects month, 
-            string day, string year, Objects gender, string phone, string currAddr)
-        {
-            FirstName.FillText(first);
-            LastName.FillText(last);
-            NewAddress.FillText(newAddr);
-            NewPassword.FillText(pass);
-            NewPasswordVerify.FillText(passAgain);
-
-            BirthMonthOpen.Click();
-            month.Click();
-
-            BirthDay.element.SendKeys(day);
-            BirthYear.element.SendKeys(year);
-
-            GenderOpen.Click();
-            gender.Click();
-
-            RecoveryPhone.FillText(phone);
-            RecoveryEmail.FillText(currAddr);
-        }   
     }
 }

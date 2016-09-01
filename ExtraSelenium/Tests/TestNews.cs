@@ -1,9 +1,8 @@
 ﻿using Coypu;
 using GoogleAutomation.Object_Models;
 using NUnit.Framework;
-using System;
 
-namespace GoogleAutomation
+namespace GoogleAutomation.Tests
 {
     [TestFixture]
     class TestNews
@@ -40,10 +39,12 @@ namespace GoogleAutomation
             foreach (var option in news.Categories)
             {
                 option.Click();
+                
+                news.FirstArticle.Click();
 
                 Assert.True(news.hasLeftHome());
 
-                news.clickFirstArticle();
+                news.closeOpenedArticleTab();
             }
         }
 

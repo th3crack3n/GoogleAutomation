@@ -2,7 +2,7 @@
 using GoogleAutomation.Object_Models;
 using NUnit.Framework;
 
-namespace GoogleAutomation
+namespace GoogleAutomation.Tests
 {
     [TestFixture]
     class Journeys
@@ -39,6 +39,14 @@ namespace GoogleAutomation
             browser.Visit("/");
         }
 
+        private void login(string user, string pass)
+        {
+            signIn.Email.FillText(user);    
+            signIn.Next.Click();
+            signIn.Password.FillText(pass);
+            signIn.SignInButton.Click();
+        }
+
         /// <summary>
         ///     Goes to sign in page,
         ///     Fails login,
@@ -50,10 +58,16 @@ namespace GoogleAutomation
         public void journey1()
         {
             header.SignIn.Click();
-            signIn.login("fake@google.com", "failpass");   // email must exist
+            login("fake@google.com", "fakepass");   // email must exist
             browser.Visit("/");
             header.Images.Click();
-            images.uploadImage("C:\\Users\\Public\\Penguins.jpg");
+
+            images.SearchByImage.Click();
+            if (images.PasteImageUrlOpen.Exists())
+            {
+                images.UploadAnImage.Click();
+            }
+            images.ImageUrl.FillText("C:\\Users\\Public\\Penguins.jpg");
         }
 
         /// <summary>
@@ -66,7 +80,7 @@ namespace GoogleAutomation
         public void journey2()
         {
             header.SignIn.Click();
-            signIn.login("fake@google.com", "failpass");   // email must exist
+            login("fake@google.com", "fakepass");   // email must exist
             browser.Visit("/");
             footer.Terms.Click();
         }
@@ -81,7 +95,7 @@ namespace GoogleAutomation
         public void journey3()
         {
             header.SignIn.Click();
-            signIn.login("fake@google.com", "failpass");   // email must exist
+            login("fake@google.com", "fakepass");   // email must exist
             signIn.DifferentAccount.Click();
             signIn.CreateAccount.Click();
         }
@@ -111,8 +125,21 @@ namespace GoogleAutomation
         {
             header.SignIn.Click();
             signIn.CreateAccount.Click();
-            signIn.fillCreateAccount("Sean", "McCracken", "newfakegmail", "fakepass123", "fakepass123", 
-                signIn.August, "22", "1990", signIn.Male, "5153825330", "oldfakegmail@gmail.com");
+
+            signIn.FirstName.FillText("Sean");
+            signIn.LastName.FillText("McCracken");
+            signIn.NewAddress.FillText("newfakegmail");
+            signIn.NewPassword.FillText("fakepass123");
+            signIn.NewPasswordVerify.FillText("fakepass123");
+            signIn.BirthMonthOpen.Click();
+            signIn.August.Click();
+            signIn.BirthDay.element.SendKeys("22");
+            signIn.BirthYear.element.SendKeys("1990");
+            signIn.GenderOpen.Click();
+            signIn.Male.Click();
+            signIn.RecoveryPhone.FillText("5153825330");
+            signIn.RecoveryEmail.FillText("oldfakegmail@gmail.com");
+
             signIn.NextNewAccount.Click();
         }
 

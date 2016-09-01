@@ -1,155 +1,153 @@
 ﻿using Coypu;
-using System;
-using System.Collections.Generic;
 
 namespace GoogleAutomation.Object_Models
 {
     class Header
     {
-        private BrowserSession browser;
+        private BrowserSession _browser;
 
-        public Objects Gmail
+        public ObjectModel Gmail
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Gmail')]", "google.com/gmail"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Gmail')]", "google.com/gmail"); }
         }
 
-        public Objects Images
+        public ObjectModel Images
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Images')]", "google.com/img"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Images')]", "google.com/img"); }
         }
 
-        public Objects Options
+        public ObjectModel Options
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='gbwa']/div/a"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='gbwa']/div/a"); }
         }
 
-        public Objects OptionsOpen
+        public ObjectModel OptionsOpen
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='gbwa']/div[2]/ul"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='gbwa']/div[2]/ul"); }
         }
 
-        public Objects SignIn
+        public ObjectModel SignIn
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Sign in')]", "accounts.google.com"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Sign in')]", "accounts.google.com"); }
         }
 
-        public Objects MyAccount
+        public ObjectModel MyAccount
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb192", "myaccount.google.com"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb192", "myaccount.google.com"); }
         }
 
-        public Objects Search
+        public ObjectModel Search
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb1", "google.com"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb1", "google.com"); }
         }
 
-        public Objects Maps
+        public ObjectModel Maps
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb8", "google.com/maps"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb8", "google.com/maps"); }
         }
 
-        public Objects YouTube
+        public ObjectModel YouTube
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb36", "youtube.com"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb36", "youtube.com"); }
         }
 
-        public Objects Play
+        public ObjectModel Play
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb78", "play.google.com"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb78", "play.google.com"); }
         }
 
-        public Objects News
+        public ObjectModel News
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb5", "news.google.com"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb5", "news.google.com"); }
         }
 
-        public Objects OptGmail
+        public ObjectModel OptGmail
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb23", "google.com/gmail"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb23", "google.com/gmail"); }
         }
 
-        public Objects Drive
+        public ObjectModel Drive
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb49", "google.com/intl/en/drive"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb49", "google.com/intl/en/drive"); }
         }
 
-        public Objects Calendar
+        public ObjectModel Calendar
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb24", "calendar.google.com"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb24", "calendar.google.com"); }
         }
 
-        public Objects GooglePlus
+        public ObjectModel GooglePlus
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb119", "plus.google.com"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb119", "plus.google.com"); }
         }
 
-        public Objects Translate
+        public ObjectModel Translate
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb51", "translate.google.com"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb51", "translate.google.com"); }
         }
 
-        public Objects Photos
+        public ObjectModel Photos
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb31", "google.com/photos"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb31", "google.com/photos"); }
         }
 
-        public Objects Shopping
+        public ObjectModel Shopping
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb6", "google.com/shopping", true); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb6", "google.com/shopping", true); }
         }
 
-        public Objects Wallet
+        public ObjectModel Wallet
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb212", "wallet.google.com", true); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb212", "wallet.google.com", true); }
         }
 
-        public Objects Finance
+        public ObjectModel Finance
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb27", "google.com/finance", true); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb27", "google.com/finance", true); }
         }
 
-        public Objects Docs
+        public ObjectModel Docs
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb25", "docs.google.com", true); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb25", "docs.google.com", true); }
         }
 
-        public Objects Books
+        public ObjectModel Books
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb10", "books.google.com", true); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb10", "books.google.com", true); }
         }
 
-        public Objects Blogger
+        public ObjectModel Blogger
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb30", "blogger.com", true); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb30", "blogger.com", true); }
         }
 
-        public Objects Contacts
+        public ObjectModel Contacts
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb53", "google.com%2Fcontacts", true); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb53", "google.com%2Fcontacts", true); }
         }
 
-        public Objects Hangouts
+        public ObjectModel Hangouts
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gb300", "hangouts.google.com", true); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gb300", "hangouts.google.com", true); }
         }
 
         public Header(BrowserSession browser)
         {
-            this.browser = browser; 
+            _browser = browser; 
         }
 
-        public Objects[] SubOptions
+        public ObjectModel[] SubOptions
         {
             get
             {
-                return new Objects[] { MyAccount, Search, Maps, YouTube, Play, News, OptGmail, Drive, Calendar,
+                return new ObjectModel[] { MyAccount, Search, Maps, YouTube, Play, News, OptGmail, Drive, Calendar,
                     GooglePlus, Translate, Photos, Shopping, Wallet, Finance, Docs, Books, Blogger, Contacts, Hangouts };
             }
         }
         
         public bool hasLeftHome()
         {
-            return !string.Equals(browser.Location, "https://www.google.com/");
+            return !string.Equals(_browser.Location, "https://www.google.com/");
         }
     }
 }

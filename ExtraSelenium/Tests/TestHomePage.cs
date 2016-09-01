@@ -2,7 +2,7 @@
 using GoogleAutomation.Object_Models;
 using NUnit.Framework;
 
-namespace GoogleAutomation
+namespace GoogleAutomation.Tests
 {
     [TestFixture]
     class TestHomePage
@@ -32,7 +32,7 @@ namespace GoogleAutomation
         {
             browser.Visit("/");
         }
-
+        
         [Test]
         public void openGmail()
         {
@@ -76,11 +76,27 @@ namespace GoogleAutomation
 
             Assert.IsTrue(header.SignIn.ContainsPartial());
         }
+
+        private void disableInstantSearch(bool desired)
+        {
+            footer.Settings.Click();
+            footer.SearchSettings.Click();
+            if (desired)
+            {
+                footer.InstantOn.Click();
+            }
+            else
+            {
+                footer.InstantOff.Click();
+            }
+            footer.InstantSave.Click();
+            browser.AcceptModalDialog();
+        }
         
         [Test]
         public void searchInstantResults()
         {
-            footer.disableInstantSearch(false);
+            disableInstantSearch(false);
             main.SearchBar.FillText("xpanxion");
 
             Assert.True(true);
@@ -89,7 +105,7 @@ namespace GoogleAutomation
         [Test]
         public void searchNormal()
         {
-            footer.disableInstantSearch(true);
+            disableInstantSearch(true);
             main.SearchBar.FillText("xpanxion");
             main.GoogleSearch.Click();
 
@@ -99,7 +115,7 @@ namespace GoogleAutomation
         [Test]
         public void searchLucky()
         {
-            footer.disableInstantSearch(true);
+            disableInstantSearch(true);
             main.SearchBar.FillText("xpanxion");
             main.ImFeelingLucky.Click();
 
@@ -153,13 +169,13 @@ namespace GoogleAutomation
 
             Assert.IsTrue(footer.SettingsOpen.Exists());
         }
-
+        
         [Test]
         public void openSubSettingsAll()
         {
             foreach (var option in footer.SubSettings)
             {
-                reset();
+                if (footer.SubSettings.GetValue(0) != option) reset();
                 footer.Settings.Click();
                 option.Click();
                 if (option == footer.SendFeedback)

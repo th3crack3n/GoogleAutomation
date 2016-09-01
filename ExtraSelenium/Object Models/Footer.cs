@@ -1,117 +1,99 @@
 ﻿using Coypu;
-using System;
-using System.Collections.Generic;
 
 namespace GoogleAutomation.Object_Models
 {
     class Footer
     {
-        private BrowserSession browser;
+        private BrowserSession _browser;
 
-        public Objects Advertising
+        public ObjectModel Advertising
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Advertising')]", "google.com/intl/en/ads"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Advertising')]", "google.com/intl/en/ads"); }
         }
 
-        public Objects Business
+        public ObjectModel Business
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Business')]", "google.com/services"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Business')]", "google.com/services"); }
         }
 
-        public Objects About
+        public ObjectModel About
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'About')]", "google.com/intl/en/about"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'About')]", "google.com/intl/en/about"); }
         }
 
-        public Objects Privacy
+        public ObjectModel Privacy
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Privacy')]", "google.com/intl/en/policies/privacy"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Privacy')]", "google.com/intl/en/policies/privacy"); }
         }
 
-        public Objects Terms
+        public ObjectModel Terms
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Terms')]", "google.com/intl/en/policies/terms"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Terms')]", "google.com/intl/en/policies/terms"); }
         }
 
-        public Objects Settings
+        public ObjectModel Settings
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Settings')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Settings')]"); }
         }
 
-        public Objects InstantOn
+        public ObjectModel InstantOn
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='instant-radio']/div[3]/span"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='instant-radio']/div[3]/span"); }
         }
 
-        public Objects InstantOff
+        public ObjectModel InstantOff
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='instant-radio']/div[1]/span"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='instant-radio']/div[1]/span"); }
         }
 
-        public Objects InstantSave
+        public ObjectModel InstantSave
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[contains(text(),'Save')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[contains(text(),'Save')]"); }
         }
 
-        public Objects SettingsOpen
+        public ObjectModel SettingsOpen
         {
-            get { return new Objects(browser, Objects.RefType.Id, "fsett"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "fsett"); }
         }
 
-        public Objects FeedbackOpen
+        public ObjectModel FeedbackOpen
         {
-            get { return new Objects(browser, Objects.RefType.Id, "google - feedback - wizard"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "google - feedback - wizard"); }
         }
 
-        public Objects SearchSettings
+        public ObjectModel SearchSettings
         {
-            get { return new Objects(browser, Objects.RefType.Link, "Search settings", "google.com/preferences"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Link, "Search settings", "google.com/preferences"); }
         }
 
-        public Objects AdvancedSearch
+        public ObjectModel AdvancedSearch
         {
-            get { return new Objects(browser, Objects.RefType.Link, "Advanced search", "google.com/advanced_search"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Link, "Advanced search", "google.com/advanced_search"); }
         }
 
-        public Objects History
+        public ObjectModel History
         {
-            get { return new Objects(browser, Objects.RefType.Link, "History", "google.com/history"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Link, "History", "google.com/history"); }
         }
 
-        public Objects SearchHelp
+        public ObjectModel SearchHelp
         {
-            get { return new Objects(browser, Objects.RefType.Link, "Search Help", "support.google.com/websearch"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Link, "Search Help", "support.google.com/websearch"); }
         }
 
-        public Objects SendFeedback
+        public ObjectModel SendFeedback
         {
-            get { return new Objects(browser, Objects.RefType.Link, "Send feedback"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Link, "Send feedback"); }
         }
 
         public Footer(BrowserSession browser)
         {
-            this.browser = browser;
+            _browser = browser;
         }
 
-        public Objects[] SubSettings
+        public ObjectModel[] SubSettings
         {
-            get { return new Objects[] { SearchSettings, AdvancedSearch, History, SearchHelp }; }
-        }
-
-        public void disableInstantSearch(bool desired)
-        {
-            Settings.Click();
-            SearchSettings.Click();
-            if (desired)
-            {
-                InstantOn.Click();
-            }
-            else
-            {
-                InstantOff.Click();
-            }
-            InstantSave.Click();
-            browser.AcceptModalDialog();
+            get { return new ObjectModel[] { SearchSettings, AdvancedSearch, History, SearchHelp }; }
         }
     }
 }

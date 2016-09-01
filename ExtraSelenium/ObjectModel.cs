@@ -1,18 +1,16 @@
 ﻿using Coypu;
-using System;
 using System.Threading;
 
 namespace GoogleAutomation
 {
-    class Objects
+    class ObjectModel
     {
-        BrowserSession browser;
+        BrowserSession _browser;
         public ElementScope element;
-        string partial;
-        bool more;
+        string _partial;
+        bool _more;
 
-        public enum RefType
-        {
+        public enum RefType {
             Id,
             Xpath,
             Frame,
@@ -20,45 +18,45 @@ namespace GoogleAutomation
             Field
         }
 
-        public Objects(BrowserSession browser, RefType refType, string value, string partial = "", bool more = false)
+        public ObjectModel(BrowserSession browser, RefType refType, string value, string partial = "", bool more = false)
                                             // 'partial' & 'more' only used in certain objects, so are optional params
         {
-            this.browser = browser;
-            this.partial = partial;
-            this.more = more;
+            _browser = browser;
+            _partial = partial;
+            _more = more;
 
             switch (refType)
             {
                 case RefType.Id:
-                    element = browser.FindId(value, Options.First);
+                    element = _browser.FindId(value, Options.First);
                     break;
                 case RefType.Xpath:
-                    element = browser.FindXPath(value, Options.First);
+                    element = _browser.FindXPath(value, Options.First);
                     break;
                 case RefType.Frame:
-                    element = browser.FindFrame(value, Options.First);
+                    element = _browser.FindFrame(value, Options.First);
                     break;
                 case RefType.Link:
-                    element = browser.FindLink(value, Options.First);
+                    element = _browser.FindLink(value, Options.First);
                     break;
                 case RefType.Field:
-                    element = browser.FindField(value, Options.First);
+                    element = _browser.FindField(value, Options.First);
                     break;
                 default:
-                    throw new MissingHtmlException("");
+                    throw new MissingHtmlException("RefType entered was not a valid RefType");
             }
         }
         
         public void Click()
         {
-            if (more)
+            if (_more)
             {
-                browser.ClickLink("More");    // only used for header sub-options
+                _browser.ClickLink("More");    // only used for header sub-options
                 Thread.Sleep(1000);
             }
             element.Click();
             
-            Thread.Sleep(1500);
+            Thread.Sleep(2000);
         }
 
         public void FillText(string text)
@@ -78,7 +76,7 @@ namespace GoogleAutomation
 
         public bool ContainsPartial()
         {
-            return browser.Location.AbsoluteUri.Contains(partial);
+            return _browser.Location.AbsoluteUri.Contains(_partial);
         }
     }
 }

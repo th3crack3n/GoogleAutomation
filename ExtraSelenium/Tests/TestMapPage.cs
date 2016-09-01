@@ -3,7 +3,7 @@ using GoogleAutomation.Object_Models;
 using NUnit.Framework;
 using System.Threading;
 
-namespace GoogleAutomation
+namespace GoogleAutomation.Tests
 {
     class TestMapPage
     {
@@ -28,7 +28,7 @@ namespace GoogleAutomation
         public void reset()
         {
             browser.Visit("/maps");
-            Thread.Sleep(3500);
+            Thread.Sleep(3500);     // content slow to load
         }
 
         [Test]
@@ -68,29 +68,24 @@ namespace GoogleAutomation
         [Test]
         public void toggleDirections()
         {
-            maps.Directions.Click();
-            maps.CancelDirections.Click();
+            maps.OpenDirections.Click();
+            maps.CloseDirections.Click();
         }
 
         [Test]
         public void searchText()
         {
-            maps.SearchBox.FillText("Xpanxion, Ames IA");
+            maps.SearchBox.FillText("Ames IA");
             maps.SearchIcon.Click();
         }
 
         [Test]
         public void getDirections()
         {
-            maps.Directions.Click();
-            maps.enterDirections();
+            maps.OpenDirections.Click();
+            maps.DirectionsFirst.FillText("4909 NE Milligan Ln, Ankeny, IA 50021");
+            maps.DirectionsSecond.FillText("1315 South Bell Ave, Ames, IA 50010");
             maps.DirectionSubmit.Click();
-        }
-
-        [TearDown]
-        public void wait()
-        {
-            Thread.Sleep(1500);     // to see results
         }
 
         [TestFixtureTearDown]

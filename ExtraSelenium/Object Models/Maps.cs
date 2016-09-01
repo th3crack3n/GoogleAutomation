@@ -1,94 +1,84 @@
 ﻿using Coypu;
-using System.Collections.Generic;
 
 namespace GoogleAutomation.Object_Models
 {
     class Maps
     {
-        private BrowserSession browser;
+        private BrowserSession _browser;
 
-        public Objects ZoomIn
+        public ObjectModel ZoomIn
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='zoom']/div/button[1]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='zoom']/div/button[1]"); }
         }
 
-        public Objects ZoomOut
+        public ObjectModel ZoomOut
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='zoom']/div/button[2]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='zoom']/div/button[2]"); }
         }
 
-        public Objects ShowLocation
+        public ObjectModel ShowLocation
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='mylocation']/div/button"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='mylocation']/div/button"); }
         }
 
-        public Objects MapType
+        public ObjectModel MapType
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='minimap']/div/div[3]/button"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='minimap']/div/div[3]/button"); }
         }
 
-        public Objects OpenMenu
+        public ObjectModel OpenMenu
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//button[@id='searchbox-hamburger']"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//button[@id='searchbox-hamburger']"); }
         }
 
-        public Objects CloseMenu
+        public ObjectModel CloseMenu
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='settings']/div/div[2]/div/div[2]/button"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='settings']/div/div[2]/div/div[2]/button"); }
         }
 
-        public Objects Explore
+        public ObjectModel Explore
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='runway-expand-button']/div/div/button[2]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='runway-expand-button']/div/div/button[2]"); }
         }
 
-        public Objects Directions
+        public ObjectModel OpenDirections
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//button[@id='searchbox-directions']"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//button[@id='searchbox-directions']"); }
         }
 
-        public Objects CancelDirections
+        public ObjectModel CloseDirections
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='omnibox']/div/div[3]/div/div/div/button"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='omnibox']/div/div[3]/div/div/div/button"); }
         }
 
-        public Objects SearchBox
+        public ObjectModel SearchBox
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//input[@id='searchboxinput']"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//input[@id='searchboxinput']"); }
         }
 
-        public Objects SearchIcon
+        public ObjectModel SearchIcon
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//button[@id='searchbox-searchbutton']"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//button[@id='searchbox-searchbutton']"); }
         }
 
-        public Objects DirectionsFirst
+        public ObjectModel DirectionsFirst
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='sb_ifc51']/input"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='sb_ifc51']/input"); }
         }
 
-        public Objects DirectionsSecond
+        public ObjectModel DirectionsSecond
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='sb_ifc52']/input"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='sb_ifc52']/input"); }
         }
 
-        public Objects DirectionSubmit
+        public ObjectModel DirectionSubmit
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='directions-searchbox-1']/button"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='directions-searchbox-1']/button"); }
         }
-
-        string HomeAddress = "4909 NE Milligan Ln, Ankeny, IA 50021";
-        string XpanxionAddress = "1315 South Bell Ave, Ames, IA 50010";
         
         public Maps(BrowserSession browser)
         {
-            this.browser = browser;
-        }
-
-        public void enterDirections()
-        {
-            DirectionsFirst.FillText(HomeAddress);
-            DirectionsSecond.FillText(XpanxionAddress);
+            _browser = browser;
         }
     }
 }

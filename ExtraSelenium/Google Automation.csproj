@@ -87,7 +87,7 @@
     <Compile Include="Object Models\Maps.cs" />
     <Compile Include="Object Models\News.cs" />
     <Compile Include="Object Models\SignIn.cs" />
-    <Compile Include="Objects.cs" />
+    <Compile Include="ObjectModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Tests\Journeys.cs" />
     <Compile Include="Tests\TestHomePage.cs" />

@@ -1,15 +1,8 @@
 ﻿using Coypu;
 using GoogleAutomation.Object_Models;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace GoogleAutomation
+namespace GoogleAutomation.Tests
 {
     class TestImagePage
     {
@@ -39,7 +32,9 @@ namespace GoogleAutomation
         [Test]
         public void imageSearchXpanxion()
         {
-            images.typeAndReturnSearchBar("xpanxion");
+            images.SearchBar.FillText("ames ia");
+            images.SearchIcon.Click();
+
             Assert.IsTrue(images.hasLeftImagesHome());
         }
 
@@ -54,23 +49,30 @@ namespace GoogleAutomation
         [Test]
         public void toggleSearchByImageSelector()
         {
-            openSearchByImage();
-            images.toggleUploadImage();
+            images.SearchByImage.Click();
 
-            Assert.IsTrue(images.UploadAnImageOpen.Exists());
+            if (images.PasteImageUrlOpen.Exists())
+            {
+                images.UploadAnImage.Click();
 
-            images.togglePasteImageURL();
+                Assert.IsTrue(images.UploadAnImageOpen.Exists());
+            }
 
-            Assert.IsTrue(images.PasteImageUrlOpen.Exists());
+            if (images.UploadAnImageOpen.Exists())
+            {
+                images.PasteImageUrl.Click();
 
+                Assert.IsTrue(images.PasteImageUrlOpen.Exists());
+            }
         }
 
         [Test]
         public void searchByImageURL()
         {
-            openSearchByImage();
-            images.typeInImageURL("http://xpanxion.com/images/black%20xpanxion-ust%20global%20group.png");
-            images.clickSearchByImagePost();
+            images.SearchByImage.Click();
+
+            images.TypeImageUrl.FillText("http://xpanxion.com/images/black%20xpanxion-ust%20global%20group.png");
+            images.SearchByImagePost.Click();
 
             Assert.IsTrue(images.hasLeftImagesHome());
         }
@@ -78,9 +80,14 @@ namespace GoogleAutomation
         [Test]
         public void searchByUpload()
         {
-            openSearchByImage();
-            images.toggleUploadImage();
-            images.uploadImageLocation(("C:\\Users\\Public\\Penguins.jpg"));
+            images.SearchByImage.Click();
+
+            if (images.PasteImageUrlOpen.Exists())
+            {
+                images.UploadAnImage.Click();
+            }
+
+            images.ImageUrl.FillText("C:\\Users\\Public\\Penguins.jpg");
             if (browser.Location.AbsoluteUri == "https://www.google.com/searchbyimage/upload")
             {
                 Assert.Fail("Unable to find file");

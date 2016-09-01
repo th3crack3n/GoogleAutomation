@@ -7,106 +7,100 @@ namespace GoogleAutomation.Object_Models
 {
     class News
     {
-        private BrowserSession browser;
+        private BrowserSession _browser;
         
-        public Objects TopStories
+        public ObjectModel TopStories
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Top Stories')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Top Stories')]"); }
         }
 
-        public Objects Local
+        public ObjectModel Local
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[3]/div/div/div/div[2]/div/ul/li[2]/a"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[3]/div/div/div/div[2]/div/ul/li[2]/a"); }
         }
 
-        public Objects World
+        public ObjectModel World
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'World')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'World')]"); }
         }
 
-        public Objects US
+        public ObjectModel US
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'U.S.')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'U.S.')]"); }
         }
 
-        public Objects Business
+        public ObjectModel Business
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Business')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Business')]"); }
         }
 
-        public Objects Technology
+        public ObjectModel Technology
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Technology')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Technology')]"); }
         }
 
-        public Objects Entertainment
+        public ObjectModel Entertainment
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Entertainment')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Entertainment')]"); }
         }
 
-        public Objects Sports
+        public ObjectModel Sports
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Sports')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Sports')]"); }
         }
 
-        public Objects Science
+        public ObjectModel Science
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Science')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Science')]"); }
         }
 
-        public Objects Health
+        public ObjectModel Health
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Health')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Health')]"); }
         }
 
-        public Objects Spotlight
+        public ObjectModel Spotlight
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Spotlight')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Spotlight')]"); }
         }
 
-        public Objects Elections
+        public ObjectModel Elections
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//a[contains(text(),'Elections')]"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//a[contains(text(),'Elections')]"); }
         }
 
-        public Objects SearchBar
+        public ObjectModel SearchBar
         {
-            get { return new Objects(browser, Objects.RefType.Id, "gbqfq"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "gbqfq"); }
         }
 
-        public Objects FirstArticle
+        public ObjectModel FirstArticle
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//h2/a/span"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//h2/a/span"); }
         }
 
         public News(BrowserSession browser)
         {
-            this.browser = browser;
+            _browser = browser;
         }
 
-        public Objects[] Categories
+        public ObjectModel[] Categories
         {
             get
             {
-                return new Objects[] { Local, TopStories, World, US, Business, Technology, Entertainment, Sports, Science, Health, Spotlight, Elections };
+                return new ObjectModel[] { Local, TopStories, World, US, Business, Technology, Entertainment, Sports, Science, Health, Spotlight, Elections };
             }
         }
 
         public bool hasLeftHome()
         {
-            return !string.Equals(browser.Location, "https://www.google.com/");
+            return !Equals(_browser.Location, "https://www.google.com/");
         }
-
-        public void clickFirstArticle()
+        
+        public void closeOpenedArticleTab()
         {
-            FirstArticle.Click();
             Thread.Sleep(500);
-            closeOpenedTab();
-        }
-
-        public void closeOpenedTab()
-        {
-            ChromeDriver driver = (ChromeDriver) browser.Native;
+            ChromeDriver driver = (ChromeDriver) _browser.Native;
             List<string> tabs = new List<string>(driver.WindowHandles);
             driver.SwitchTo().Window(tabs[1]);      // newly opened tab
             driver.Close();

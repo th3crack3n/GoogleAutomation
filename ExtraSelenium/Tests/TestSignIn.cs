@@ -2,7 +2,7 @@
 using GoogleAutomation.Object_Models;
 using NUnit.Framework;
 
-namespace GoogleAutomation
+namespace GoogleAutomation.Tests
 {
     [TestFixture]
     class TestSignIn

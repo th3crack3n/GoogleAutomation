@@ -4,116 +4,71 @@ namespace GoogleAutomation.Object_Models
 {
     class Images
     {
-        private BrowserSession browser;
+        private BrowserSession _browser;
 
-        public Objects SearchByImage
+        public ObjectModel SearchByImage
         {
-            get { return new Objects(browser, Objects.RefType.Id, "qbi"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "qbi"); }
         }
 
-        public Objects SearchByImageOpen
+        public ObjectModel SearchByImageOpen
         {
-            get { return new Objects(browser, Objects.RefType.Id, "qbp"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "qbp"); }
         }
 
-        public Objects UploadAnImage
+        public ObjectModel UploadAnImage
         {
-            get { return new Objects(browser, Objects.RefType.Link, "Upload an image"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Link, "Upload an image"); }
         }
 
-        public Objects UploadAnImageOpen
+        public ObjectModel UploadAnImageOpen
         {
-            get { return new Objects(browser, Objects.RefType.Id, "qbp"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "qbp"); }
         }
 
-        public Objects PasteImageUrl
+        public ObjectModel PasteImageUrl
         {
-            get { return new Objects(browser, Objects.RefType.Link, "Paste image URL"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Link, "Paste image URL"); }
         }
 
-        public Objects PasteImageUrlOpen
+        public ObjectModel PasteImageUrlOpen
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//td[@id='qbbtc']/input"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//td[@id='qbbtc']/input"); }
         }
 
-        public Objects SearchBar
+        public ObjectModel SearchBar
         {
-            get { return new Objects(browser, Objects.RefType.Id, "lst-ib"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "lst-ib"); }
         }
 
-        public Objects SearchIcon
+        public ObjectModel SearchIcon
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//div[@id='sblsbb']/button"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='sblsbb']/button"); }
         }
 
-        public Objects TypeImageUrl
+        public ObjectModel TypeImageUrl
         {
-            get { return new Objects(browser, Objects.RefType.Id, "qbui"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "qbui"); }
         }
 
-        public Objects SearchByImagePost
+        public ObjectModel SearchByImagePost
         {
-            get { return new Objects(browser, Objects.RefType.Xpath, "//input[@id='qbui']"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//input[@id='qbui']"); }
         }
 
-        public Objects ImageUrl
+        public ObjectModel ImageUrl
         {
-            get { return new Objects(browser, Objects.RefType.Id, "qbfile"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Id, "qbfile"); }
         }
 
         public Images(BrowserSession browser)
         {
-            this.browser = browser;
+            _browser = browser;
         }
 
         public bool hasLeftImagesHome()
         {
-            return !string.Equals(browser.Location, "https://www.google.com/images");
+            return !string.Equals(_browser.Location, "https://www.google.com/images");
         }
-
-        public void togglePasteImageURL()
-        {
-            if (UploadAnImageOpen.Exists())
-            {
-                PasteImageUrl.Click();
-            }
-        }
-
-        public void toggleUploadImage()
-        {
-            if (PasteImageUrlOpen.Exists())
-            {
-                UploadAnImage.Click();
-            }
-        }
-
-        public void typeAndReturnSearchBar(string text)
-        {
-            SearchBar.FillText("xpanxion");
-            SearchIcon.Click();
-        }
-
-        public void typeInImageURL(string url)
-        {
-            TypeImageUrl.FillText(url);
-        }
-
-        public void clickSearchByImagePost()
-        {
-            SearchByImagePost.Click();
-        }
-
-        public void uploadImageLocation(string path)
-        {
-            ImageUrl.FillText(path);
-        }
-
-        public void uploadImage(string path)
-        {
-            SearchByImage.Click();
-            toggleUploadImage();
-            ImageUrl.FillText(path);
-        }
-
     }
 }
