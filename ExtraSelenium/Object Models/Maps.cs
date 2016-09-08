@@ -23,7 +23,7 @@ namespace GoogleAutomation.Object_Models
 
         public ObjectModel MapType
         {
-            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='minimap']/div/div[3]/button"); }
+            get { return new ObjectModel(_browser, ObjectModel.RefType.Xpath, "//div[@id='minimap-expandable']/div/div[3]/button"); }
         }
 
         public ObjectModel OpenMenu
